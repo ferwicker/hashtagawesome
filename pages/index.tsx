@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
+import Logo from '../public/images/logo.png';
+
 library.add(faShuffle);
 
 const Home: NextPage = () => {
@@ -22,7 +24,7 @@ const Home: NextPage = () => {
         <div className={css.logoContainer}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
-            src="/../public/images/logo.png" 
+            src={Logo} 
             alt="Hashtag Awesome Nails logo" 
             width="400px"
             height="400px"

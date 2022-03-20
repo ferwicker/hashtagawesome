@@ -33,10 +33,10 @@ const Home: NextPage = () => {
         <h1 className={css.centerText}>Coming Soon!</h1>
         <div>
           <a href="https://www.instagram.com/hashtag.awesome.nails/" target="_blank" rel="noreferrer" className={css.socialIcon}>
-            <FontAwesomeIcon icon="fa-brands fa-instagram" color="#ec1c24" size="3x" />
+            <FontAwesomeIcon icon={["fab", "instagram"]} color="#ec1c24" size="3x" />
           </a>
           <a href="https://www.pinterest.com.au/hashtagawesomenails/" target="_blank" rel="noreferrer" className={css.socialIcon}>
-            <FontAwesomeIcon icon="fa-brands fa-pinterest" color="#ec1c24" size="3x" />
+            <FontAwesomeIcon icon={["fab", "pinterest"]} color="#ec1c24" size="3x" />
           </a>
         </div>
       </main>

@@ -1,19 +1,5 @@
 @import '../styles/global.scss';
 
-.container {
-    padding: 0 2rem;
-  }
-  
-  .main {
-    min-height: 100vh;
-    padding: 4rem 0;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
   .logoContainer {
     width: 100%;
     height: auto;
@@ -30,6 +16,6 @@
     margin: 0;
   }
 
-  .centerText {
-    text-align: center;
+  .socialIcon {
+    padding: 0 16px;
   }

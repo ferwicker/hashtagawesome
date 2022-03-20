@@ -4,12 +4,12 @@ import css from './index.module.scss'
 
 import Image from 'next/image'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faShuffle } from '@fortawesome/free-solid-svg-icons'
+import { faInstagram, faPinterest } from '@fortawesome/free-brands-svg-icons'
 import { library } from '@fortawesome/fontawesome-svg-core'
 
 import Logo from '../public/images/logo.png';
 
-library.add(faShuffle);
+library.add(faInstagram, faPinterest);
 
 const Home: NextPage = () => {
   return (
@@ -23,7 +23,6 @@ const Home: NextPage = () => {
 
       <main className={css.main}>
         <div className={css.logoContainer}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
             src={Logo} 
             alt="Hashtag Awesome Nails logo" 
@@ -32,6 +31,14 @@ const Home: NextPage = () => {
             className={css.logo} />
         </div>
         <h1 className={css.centerText}>Coming Soon!</h1>
+        <div>
+          <a href="https://www.instagram.com/hashtag.awesome.nails/" target="_blank" rel="noreferrer" className={css.socialIcon}>
+            <FontAwesomeIcon icon="fa-brands fa-instagram" color="#ec1c24" size="3x" />
+          </a>
+          <a href="https://www.pinterest.com.au/hashtagawesomenails/" target="_blank" rel="noreferrer" className={css.socialIcon}>
+            <FontAwesomeIcon icon="fa-brands fa-pinterest" color="#ec1c24" size="3x" />
+          </a>
+        </div>
       </main>
     </div>
   )

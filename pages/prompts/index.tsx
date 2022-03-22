@@ -30,11 +30,11 @@ const PromptsHome: NextPage = () => {
                     Generate Random
                 </Button>
             </a>
-            {/* <a href="/prompts/custom">
+            <a href="/prompts/custom">
                 <Button className={css.button}>
                     Custom Prompt
                 </Button>
-            </a> */}
+            </a>
         </div>
       </div>
     )

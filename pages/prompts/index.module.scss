@@ -1,9 +1,30 @@
+@import '../../styles/global.scss';
+
 .container {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding-bottom: 32px;
+}
+
+.row {
+    display: flex;
+    width: 100%;
+    max-width: 600px;
+}
+
+.prefContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 16px;
+}
+
+.wrapRow {
+    flex-wrap: wrap;
 }
 
 .logoContainer {
@@ -28,6 +49,17 @@
       width: 100%;
       max-width: 300px;
       top: 24px;
+  }
+
+  .headline {
+      font-family: $font-solid;
+      color: $colour-primary;
+      font-size: 36px;
+  }
+
+  .smallHeadline {
+      color: $colour-primary;
+      font-size: 24px;
   }
 
   .buttonsContainer {
@@ -59,4 +91,20 @@
       bottom: 0;
       width: 100%;
       height: 72px;
+  }
+
+  .buttonHalfWidth {
+      min-width: 0 !important; 
+      width: 50% !important;
+      background: $colour-lightPink !important;
+      padding: 8px 12px !important;
+  }
+
+  .buttonMultiple {
+      width: calc(50% - 24px) !important;
+      margin: 0 12px 24px;
+  }
+
+  .seasons {
+    padding: 0 12px;
   }

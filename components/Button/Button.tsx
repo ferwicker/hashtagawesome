@@ -12,7 +12,7 @@ const Button: React.FunctionComponent<Props> = ({
     children,
 }) => {
     return (
-        <button className={[className, css.button].join(' ')}>{children}</button>
+        <button className={[css.button, className].join(' ')}>{children}</button>
     )
 }
 

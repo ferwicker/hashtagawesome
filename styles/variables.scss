@@ -2,10 +2,11 @@
 
 $colour-primary: #ec1c24;
 $colour-secondary: #ff40c7;
+$colour-lightPink: #FFEBF9;
 
 // main background
 
-$background: #FFEBF9 url('../public/images/bg-14.png') repeat;
+$background: $colour-lightPink url('../public/images/bg-14.png') repeat;
 
 // Fonts
 

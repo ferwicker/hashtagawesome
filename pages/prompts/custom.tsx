@@ -64,8 +64,9 @@ const CustomPrompt: NextPage = () => {
                 <Button className={[css.buttonHalfWidth, css.buttonMultiple].join(' ')}>Extras</Button>
             </div>
         </div>
-        <button className={css.shuffleButton}>
-            <FontAwesomeIcon icon="shuffle" color="#ec1c24" size="3x" />
+        <button className={[css.shuffleButton, css.generateButton].join(' ')}>
+            <span className={css.generateText}>Generate</span>
+            <FontAwesomeIcon icon="shuffle" color="#ec1c24" size="2x" />
         </button>
         </>
     )

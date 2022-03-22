@@ -108,3 +108,15 @@
   .seasons {
     padding: 0 12px;
   }
+
+  .generateText {
+      font-family: $font-solid;
+      color: $colour-primary;
+      font-size: 24px;
+      margin-right: 12px;
+  }
+
+  .generateButton {
+      display: flex;
+      align-items: center;
+  }

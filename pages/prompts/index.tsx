@@ -4,7 +4,7 @@ import css from './index.module.scss'
 
 import Image from 'next/image'
 import Logo from '../../public/images/prompts-logo-18.png';
-import Sparkles from '../public/images/sparkles.png'
+import MenuButton from '../../components/MenuButton';
 
 import Button from '../../components/Button/Button';
 
@@ -15,6 +15,7 @@ const PromptsHome: NextPage = () => {
           title="Hashtag Awesome Prompts"
           description="Get creative nail prompts"
         />
+        {/* <MenuButton>Menu</MenuButton> */}
         <div className={css.logoContainer}>
             <Image
                 src={Logo} 

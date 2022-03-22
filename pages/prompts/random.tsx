@@ -9,6 +9,7 @@ import * as random from '../../configs/random'
 import Image from 'next/image'
 import smallLogo from '../../public/images/hor-logo.png';
 import PromptValue from '../../components/PromptValue';
+import MenuButton from '../../components/MenuButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
@@ -59,6 +60,9 @@ const RandomPrompt: NextPage = () => {
             title="Hashtag Awesome Nails | Random Prompt"
             description="Get a random nail prompt to inspire your creativity"
         />
+        <a className={css.menuButtonLink} href="/prompts">
+            <MenuButton>Back</MenuButton>
+        </a>
         <div className={css.smallLogoContainer}>
             <Image
                 src={smallLogo} 

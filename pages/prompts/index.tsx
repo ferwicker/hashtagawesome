@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import Link from 'next/link';
 import HeadMeta from '../../components/HeadMeta';
 import css from './index.module.scss'
 
@@ -25,16 +26,20 @@ const PromptsHome: NextPage = () => {
                 className={css.logo} />
         </div>
         <div className={css.buttonsContainer}>
-            <a href="/prompts/random">
-                <Button className={css.button}>
-                    Generate Random
-                </Button>
-            </a>
-            <a href="/prompts/custom">
-                <Button className={css.button}>
-                    Custom Prompt
-                </Button>
-            </a>
+            <Link href="/prompts/random" passHref>
+                <a>
+                    <Button className={css.button}>
+                        Generate Random
+                    </Button>
+                </a>
+            </Link>
+            <Link href="/prompts/custom" passHref>
+                <a>
+                    <Button className={css.button}>
+                        Custom Prompt
+                    </Button>
+                </a>
+            </Link>
         </div>
       </div>
     )

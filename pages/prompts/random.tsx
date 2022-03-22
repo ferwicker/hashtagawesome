@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import type { NextPage } from 'next'
+import Link from 'next/link';
 import HeadMeta from '../../components/HeadMeta'
 import css from './index.module.scss'
 
@@ -60,9 +61,11 @@ const RandomPrompt: NextPage = () => {
             title="Hashtag Awesome Nails | Random Prompt"
             description="Get a random nail prompt to inspire your creativity"
         />
-        <a className={css.menuButtonLink} href="/prompts">
+        <Link href="/prompts">
+        <a className={css.menuButtonLink}>
             <MenuButton>Back</MenuButton>
         </a>
+        </Link>
         <div className={css.smallLogoContainer}>
             <Image
                 src={smallLogo} 

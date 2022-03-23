@@ -120,3 +120,8 @@
       display: flex;
       align-items: center;
   }
+
+  .buttonSelected {
+      color: white !important;
+      background: $colour-primary !important;
+  }

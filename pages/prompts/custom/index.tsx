@@ -23,19 +23,16 @@ const CustomPrompt: NextPage = () => {
 
     const router = useRouter();
 
-    React.useEffect(() => {
-        console.log(shuffle);
-    }, [shuffle]);
-
     const handleGenerateClick = () => {
         if (shuffle.length === 0) {
             alert('Select at least one parameter');
         } else {
+            const paramString = shuffle.join(',');
             router.push({
-                pathname: '/prompts/custom/prompt',
+                pathname: '/prompts/custom/customPrompt',
                 query: {
                     ...season,
-                    shuffle: shuffle,
+                    shuffle: paramString,
                 },
             })
         }
@@ -53,7 +50,7 @@ const CustomPrompt: NextPage = () => {
 
     const handleParamClick = (current: string) => {
         const tempArr = [...shuffle];
-        const index = tempArr.indexOf(current) 
+        const index = tempArr.indexOf(current); 
 
         if (index > -1) { // if already in array, remove
             tempArr.splice(index, 1);

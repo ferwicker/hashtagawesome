@@ -36,12 +36,18 @@ const RandomPrompt: NextPage = () => {
 
     const getPrompt = (random: typeof import("../../configs/random")) => {
         const tempArr: Prompt[] = [];
+
         tempArr.push({
             title: 'length',
             value: randomise(random.lengths),
-        }, {
+        });
+
+        tempArr.push({
             title: 'shape',
-            value: randomise(random.shapeLong),
+            value: 
+                tempArr[0].value === 'short' 
+                    ? randomise(random.shapeShort) 
+                    : randomise(random.shapeLong),
         }, {
             title: 'colour',
             value: randomise(random.colours),
@@ -52,6 +58,7 @@ const RandomPrompt: NextPage = () => {
             title: 'extras',
             value: randomise(random.extras),
         })
+        
         setPromptValues(tempArr);
     }
 
@@ -75,15 +82,11 @@ const RandomPrompt: NextPage = () => {
                 className={css.logo} />
         </div>
         <div className={css.promptValues}>
-            {promptValues.length > 0 && (
-                <>
-                    <PromptValue title="length" value={promptValues[0].value}  />
-                    <PromptValue title="shape" value={promptValues[1].value}  />
-                    <PromptValue title="Colour" value={promptValues[2].value}  />
-                    <PromptValue title="nail art" value={promptValues[3].value}  />
-                    <PromptValue title="extras" value={promptValues[4].value}  />
-                </>
-            )}
+            {promptValues.length > 0  && promptValues.map((el, i) => {
+                return (
+                    <PromptValue key={i} title={el.title} value={el.value}  />
+                )
+            })}
         </div>
         <button className={css.shuffleButton} onClick={() => { getPrompt(random) }} >
             <FontAwesomeIcon icon="shuffle" color="#ec1c24" size="3x" />

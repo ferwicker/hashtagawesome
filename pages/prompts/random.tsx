@@ -5,7 +5,7 @@ import Link from 'next/link';
 import HeadMeta from '../../components/HeadMeta'
 import css from './index.module.scss'
 
-import * as random from '../../configs/random'
+import { optionsObject } from '../../configs/customOptions';
 
 import Image from 'next/image'
 import smallLogo from '../../public/images/hor-logo.png';
@@ -31,34 +31,34 @@ const RandomPrompt: NextPage = () => {
     const [promptValues, setPromptValues] = React.useState<Prompt[]>([]);
 
     React.useEffect(() => {
-        getPrompt(random);
+        getPrompt(optionsObject);
     }, []);
 
-    const getPrompt = (random: typeof import("../../configs/random")) => {
+    const getPrompt = (optionsObject: { [x: string]: string[];}) => {
         const tempArr: Prompt[] = [];
 
         tempArr.push({
             title: 'length',
-            value: randomise(random.lengths),
+            value: randomise(optionsObject.lengths),
         });
 
         tempArr.push({
             title: 'shape',
             value: 
                 tempArr[0].value === 'short' 
-                    ? randomise(random.shapeShort) 
-                    : randomise(random.shapeLong),
+                    ? randomise(optionsObject.shapeShort) 
+                    : randomise(optionsObject.shapeAll),
         }, {
             title: 'colour',
-            value: randomise(random.colours),
+            value: randomise(optionsObject.coloursAll),
         }, {
             title: 'nail art',
-            value: randomise(random.nailArt),
+            value: randomise(optionsObject.artAll),
         }, {
             title: 'extras',
-            value: randomise(random.extras),
+            value: randomise(optionsObject.extrasRandom),
         })
-        
+
         setPromptValues(tempArr);
     }
 
@@ -88,7 +88,7 @@ const RandomPrompt: NextPage = () => {
                 )
             })}
         </div>
-        <button className={css.shuffleButton} onClick={() => { getPrompt(random) }} >
+        <button className={css.shuffleButton} onClick={() => { getPrompt(optionsObject) }} >
             <FontAwesomeIcon icon="shuffle" color="#ec1c24" size="3x" />
         </button>
         </>

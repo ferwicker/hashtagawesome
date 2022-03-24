@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react'
 import type { NextPage } from 'next'
 import Link from 'next/link'
@@ -9,7 +10,7 @@ import smallLogo from '../../../public/images/hor-logo.png';
 import PromptValue from '../../../components/PromptValue';
 import MenuButton from '../../../components/MenuButton';
 import HeadMeta from '../../../components/HeadMeta';
-import Button from '../../../components/Button';
+// import Button from '../../../components/Button';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
@@ -25,10 +26,32 @@ const CustomPromptResult: NextPage = () => {
         value: string,
     }
 
-    const router = useRouter();
-    const query = router.query;
-
+    const [savedQuery, setSavedQuery] = React.useState();
     const [promptValues, setPromptValues] = React.useState<Prompt[]>([]);
+
+    const router = useRouter();
+
+    React.useEffect (() => {
+        if (router.query === {}) {
+            const retrievedQuery:string = localStorage.getItem('query') || '';
+            const parsedQuery = retrievedQuery !== '' ? JSON.parse(retrievedQuery) : undefined;
+
+            if (parsedQuery === undefined) {
+                console.log('no query found');
+                router.push({pathname: '/prompts/custom'});
+            } else {
+                setSavedQuery(parsedQuery);
+            }
+        }
+    }, [])
+
+    const query = router.query.shuffle ? router.query : savedQuery;
+
+    React.useEffect(() => {
+        if (query !== undefined && query !== {}) {
+            getCustomPrompt(query);
+        }
+    },[query]);
 
     const randomise = (arr:any[]) => {
         return arr[Math.floor(Math.random()*arr.length)];
@@ -94,11 +117,6 @@ const CustomPromptResult: NextPage = () => {
         setPromptValues(tempArr);
 
     };
-
-    React.useEffect(() => {
-        getCustomPrompt(query);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    },[query]);
 
     return (
         <>

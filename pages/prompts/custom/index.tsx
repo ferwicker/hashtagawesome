@@ -28,12 +28,17 @@ const CustomPrompt: NextPage = () => {
             alert('Select at least one parameter');
         } else {
             const paramString = shuffle.join(',');
+            const queryObject = {
+                ...season,
+                shuffle: paramString,
+            }
+            // add local storage fall back if prompt page is refreshed
+            localStorage.clear();
+            localStorage.setItem('query', JSON.stringify(queryObject));
+
             router.push({
                 pathname: '/prompts/custom/customPrompt',
-                query: {
-                    ...season,
-                    shuffle: paramString,
-                },
+                query: queryObject,
             })
         }
     };

@@ -11,6 +11,7 @@
 .promptTitle {
     color: $colour-primary;
     font-size: 32px;
+    line-height: 1;
     font-family: $font-solid;
     margin-top: 0;
     margin-bottom: 8px;
@@ -28,7 +29,8 @@
 
     .value {
         color: $colour-primary;
-        font-size: 24px;
+        font-size: 22px;
+        line-height: 1;
         font-weight: bold;
         text-transform: uppercase;
     }

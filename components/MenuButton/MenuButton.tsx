@@ -5,7 +5,7 @@ import css from './MenuButton.module.scss';
 type Props = {
     className?: string;
     children?: string | React.ReactNode;
-    onClick?: any;
+    onClick?: Function;
 }
 
 const MenuButton: React.FunctionComponent<Props> = ({
@@ -13,10 +13,17 @@ const MenuButton: React.FunctionComponent<Props> = ({
     children = 'menu',
     onClick,
 }) => {
+
+    const handleCLick = () => {
+        if (typeof onClick === 'function') {
+            onClick();
+        }
+    }
+
     return (
         <button 
             className={[className, css.button].join(' ')}
-            onClick={typeof onClick === 'function' ? onClick() : null}
+            onClick={handleCLick}
         >
             {children}
         </button>

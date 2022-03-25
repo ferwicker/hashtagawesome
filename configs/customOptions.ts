@@ -1,6 +1,6 @@
 const optionsObject:{[key:string]: string[]} = {
     lengths: ['short', 'medium', 'long'],
-    shapeAll: ['round', 'square', 'almond', 'stiletto', 'square', 'ballerina'],
+    shapeAll: ['round', 'square', 'almond', 'stiletto', 'ballerina'],
     shapeShort: ['round', 'natural', 'square'],
 
     coloursAll: ['black', 'white', 'cream', 'nude', 'pastel pink', 'pink', 'light pink', 'hot pink', 'neon pink', 'magenta', 'fucsia', 'wine red', 

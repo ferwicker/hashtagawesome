@@ -9,6 +9,7 @@ import css from '../index.module.scss'
 import HeadMeta from '../../../components/HeadMeta'
 import smallLogo from '../../../public/images/hor-logo.png';
 import MenuButton from '../../../components/MenuButton';
+import NavMenu from '../../../components/NavMenu';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
@@ -20,8 +21,15 @@ library.add(faShuffle);
 const CustomPrompt: NextPage = () => {
     const [season, setSeason] = React.useState<any>({});
     const [shuffle, setShuffle] = React.useState<string[]>([]);
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
     const router = useRouter();
+
+    const toggleMenuOpen = () => {
+        let tempOpen = isMenuOpen;
+        tempOpen ? tempOpen = false : tempOpen = true;
+        setIsMenuOpen(tempOpen);
+    };
 
     const handleGenerateClick = () => {
         if (shuffle.length === 0) {
@@ -74,11 +82,17 @@ const CustomPrompt: NextPage = () => {
             title="Hashtag Awesome Nails | Random Prompt"
             description="Set custom preferences for your nail prompts"
         />
-        <Link href="/prompts">
-            <a className={css.menuButtonLink}>
-                <MenuButton>Back</MenuButton>
-            </a>
-        </Link>
+        <div className={css.menuButtonContainer}>
+            <Link href="/prompts">
+                <a className={[css.halfWidth, css.buttonLeft].join(' ')}>
+                    <MenuButton>Back</MenuButton>
+                </a>
+            </Link>
+            <div className={css.halfWidth}>
+                <MenuButton onClick={toggleMenuOpen} >Menu</MenuButton>
+            </div>
+        </div>
+        <NavMenu menuOpen={isMenuOpen} handleCloseClick={toggleMenuOpen}/>
         <div className={css.smallLogoContainer}>
             <Image
                 src={smallLogo} 

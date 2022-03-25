@@ -42,13 +42,13 @@ const NavMenu: React.FunctionComponent<Props> = ({
                 className={css.logo} />
             </div> */}
             <div className={css.menuItemsWrapper}>
-                <Link href="/">
+                <Link href="/about">
                     <a className={css.menuItem}>About</a>
                 </Link>
                 <Link href="/prompts">
                     <a className={css.menuItem}>Prompts</a>
                 </Link>
-                <Link href="/">
+                <Link href="/contact">
                     <a className={css.menuItem}>Contact</a>
                 </Link>
             </div>

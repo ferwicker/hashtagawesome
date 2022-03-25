@@ -27,7 +27,7 @@ const PromptsHome: NextPage = () => {
           description="Get creative nail prompts"
         />
         <div className={css.menuButtonContainer}>
-            <MenuButton onClick={toggleMenuOpen} className={'css.fullwidth'}>Menu</MenuButton>
+            <MenuButton onClick={toggleMenuOpen} className={css.fullwidth}>Menu</MenuButton>
         </div>
         <NavMenu menuOpen={isMenuOpen} handleCloseClick={toggleMenuOpen}/>
         <div className={css.logoContainer}>

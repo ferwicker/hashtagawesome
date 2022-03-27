@@ -2,6 +2,8 @@
 import * as React from 'react';
 import type { NextPage } from 'next'
 import Link from 'next/link';
+import html2canvas from 'html2canvas';
+
 import HeadMeta from '../../components/HeadMeta'
 import css from './index.module.scss'
 
@@ -12,6 +14,7 @@ import smallLogo from '../../public/images/hor-logo.png';
 import PromptValue from '../../components/PromptValue';
 import MenuButton from '../../components/MenuButton';
 import NavMenu from '../../components/NavMenu';
+import DownloadButton from '../../components/DownloadButton';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
@@ -31,6 +34,8 @@ const RandomPrompt: NextPage = () => {
 
     const [promptValues, setPromptValues] = React.useState<Prompt[]>([]);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+    const ref = React.createRef();
 
     const toggleMenuOpen = () => {
         let tempOpen = isMenuOpen;
@@ -70,12 +75,25 @@ const RandomPrompt: NextPage = () => {
         setPromptValues(tempArr);
     }
 
+    const handleScreenshot = () => {
+        let div:HTMLElement = document.getElementById('screenshot');
+        html2canvas(div).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            link.download = 'Download.jpg';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        })
+    }
+
     return (
         <>
         <HeadMeta
             title="Hashtag Awesome Nails | Random Prompt"
             description="Get a random nail prompt to inspire your creativity"
         />
+        <DownloadButton handleScreenshot={handleScreenshot} />
         <div className={css.menuButtonContainer}>
             <Link href="/prompts">
                 <a className={[css.halfWidth, css.buttonLeft].join(' ')}>
@@ -95,7 +113,7 @@ const RandomPrompt: NextPage = () => {
                 height="98px"
                 className={css.logo} />
         </div>
-        <div className={css.promptValues}>
+        <div id={'screenshot'} ref={ref} className={css.promptValues}>
             {promptValues.length > 0  && promptValues.map((el, i) => {
                 return (
                     <PromptValue key={i} title={el.title} value={el.value}  />

@@ -46,19 +46,19 @@ const About: NextPage = () => {
         <div>
             <div className={css.contactContainer}>
                 <a href="https://www.instagram.com/hashtag.awesome.nails/" target="_blank" rel="noreferrer" >
-                    <FontAwesomeIcon icon={["fab", "instagram"]} color="#ec1c24" size="3x" className={css.socialIcon} />
+                    <FontAwesomeIcon icon={["fab", "instagram"]} color="#ec1c24" size="2x" className={css.socialIcon} />
                     <span>Instagram</span>
                 </a>
             </div>
             <div className={css.contactContainer}>
                 <a href="https://www.pinterest.com.au/hashtagawesomenails/" target="_blank" rel="noreferrer" >
-                    <FontAwesomeIcon icon={["fab", "pinterest"]} color="#ec1c24" size="3x" className={css.socialIcon} />
+                    <FontAwesomeIcon icon={["fab", "pinterest"]} color="#ec1c24" size="2x" className={css.socialIcon} />
                     <span>Pinterest</span>
                 </a>
             </div>
             <div className={css.contactContainer}>
                 <a href="mailto:hello@hashtagawesomenails.com" target="_blank" rel="noreferrer">
-                    <FontAwesomeIcon icon={["fas", "envelope"]} color="#ec1c24" size="3x" className={css.socialIcon} />
+                    <FontAwesomeIcon icon={["fas", "envelope"]} color="#ec1c24" size="2x" className={css.socialIcon} />
                     <span>Send me an email</span>
                 </a>
             </div>

@@ -35,8 +35,6 @@ const RandomPrompt: NextPage = () => {
     const [promptValues, setPromptValues] = React.useState<Prompt[]>([]);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-    const ref = React.createRef();
-
     const toggleMenuOpen = () => {
         let tempOpen = isMenuOpen;
         tempOpen ? tempOpen = false : tempOpen = true;
@@ -76,7 +74,7 @@ const RandomPrompt: NextPage = () => {
     }
 
     const handleScreenshot = () => {
-        let div:HTMLElement = document.getElementById('screenshot');
+        let div:HTMLElement = document.getElementById('screenshot') !;
         html2canvas(div).then(canvas => {
             const link = document.createElement('a');
             link.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
@@ -113,7 +111,7 @@ const RandomPrompt: NextPage = () => {
                 height="98px"
                 className={css.logo} />
         </div>
-        <div id={'screenshot'} ref={ref} className={css.promptValues}>
+        <div id={'screenshot'} className={css.promptValues}>
             {promptValues.length > 0  && promptValues.map((el, i) => {
                 return (
                     <PromptValue key={i} title={el.title} value={el.value}  />

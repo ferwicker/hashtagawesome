@@ -15,7 +15,7 @@ const optionsObject:{[key:string]: string[]} = {
     coloursAutumn: ['nude', 'brown', 'red', 'dark red', 'yellow', 'beige', 'terracotta', 'black', 'teal', 
         'forest green', 'orange', 'burnt orange', 'plum', 'olive green'],
     coloursWinter: ['nude', 'white', 'silver', 'black', 'dusky pink', 'grey', 'forest green', 'grey blue', 'navy blue', 
-        'plum', 'beige', 'blue', 'dark pink', 'wine red', 'brown', 'cream'],
+        'plum', 'beige', 'blue', 'dark pink', 'wine red', 'brown', 'cream', 'teal', 'mint green'],
 
     artAll: ['mushrooms', 'flowers', 'swirls', 'abstract', 'geometric', 'animals', 'french tip', 'botanical', 'snakes', 'clouds', 
         'fruits', 'characters', 'checkers', 'mix&match', 'croc', 'animal print', 'leopard print', 'zebra print', 'bees', 'eyes',

@@ -27,10 +27,10 @@ const optionsObject:{[key:string]: string[]} = {
 
     glitter: ['no glitter', 'chunky', 'fine', 'colourful'],
     vibe: ['witchy', 'minimal', 'classy', 'fun', 'party', 'extra', 'girly', 'retro', 'detailed'],
-    extras: ['chrome', 'jelly', 'metallic', 'creamy', 'texture', '3d', 'charms', 'stickers', 'magnetic', 'holographic'],
+    extras: ['chrome', 'jelly', 'metallic', 'creamy', 'texture', '3d', 'charms', 'stickers', 'magnetic', 'holographic', 'matte'],
 
     extrasRandom: ['glitter', 'chunky glitter', 'fine glitter', 'rainbow glitter', 'shaped glitter', 
-        'witchy', 'minimal', 'classy', 'fun', 'party', 'extra',
+        'witchy', 'minimal', 'classy', 'fun', 'party', 'extra', 'matte',
         'chrome', 'jelly', 'metallic', 'creamy', 'texture', '3d', 'charms', 'stickers', 'magnetic', 'holographic']
 }
 

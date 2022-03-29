@@ -42,7 +42,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         if (!imageHidden && !isMobileDevice) {
             Download();
         } else if (!imageHidden && isMobileDevice) {
-            Share();
+            // Share();
         } else return;
     }, [imageHidden])
 
@@ -95,6 +95,9 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     // click handler
     const handleClick = () => {
        setImageHidden(false);
+       setTimeout(() => {
+           !imageHidden && Share();
+       }, 10);
     }
 
     return (

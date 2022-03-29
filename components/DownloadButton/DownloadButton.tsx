@@ -29,7 +29,6 @@ type Props = {
 const DownloadButton: React.FunctionComponent<Props> = ({
     promptValues,
 }) => {
-    const [imageHidden, setImageHidden] = React.useState(true);
     const [isMobileDevice, setIsMobileDevice] = React.useState(isMobile);
 
     // add logo to image
@@ -38,32 +37,23 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         setIsMobileDevice(isMobile);
     }, [isMobile]);
 
-    React.useEffect(() => {
-        if (!imageHidden && !isMobileDevice) {
-            Download();
-        } else if (!imageHidden && isMobileDevice) {
-            // Share();
-        } else return;
-    }, [imageHidden])
-
     // function for desktop
     const Download = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
-        !imageHidden && html2canvas(div).then(canvas => {
+        html2canvas(div).then(canvas => {
             const link = document.createElement('a');
             link.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
             link.download = 'Download.jpg';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
-            setImageHidden(true);
         })
     }
 
     //function for mobile
     const Share = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
-        !imageHidden && html2canvas(div).then(canvas => {
+        html2canvas(div).then(canvas => {
             let file;
             canvas.toBlob(function(blob){
                 const myBlob:BlobPart = new Blob([blob as BlobPart]);
@@ -87,17 +77,16 @@ const DownloadButton: React.FunctionComponent<Props> = ({
                       alert('no file')
                   }
             })
-            
-            setImageHidden(true);
         })
     }
 
     // click handler
     const handleClick = () => {
-       setImageHidden(false);
-       setTimeout(() => {
-           !imageHidden && Share();
-       }, 10);
+        if (!isMobileDevice) {
+            Download();
+        } else if (isMobileDevice) {
+            Share();
+        }
     }
 
     return (
@@ -109,7 +98,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
             <FontAwesomeIcon icon={"share"} color="#fff" size="2x"  />
         </button>
         <div className={css.hideThis}>
-            <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
+            <div id={'screenshot'} className={[css.canvasDiv].join(' ')}>
                 <div className={css.smallLogoContainer}>
                     <p className={css.logoReplacement}><span className={css.solid}>HASHTAG</span><span className={css.outline}>AWESOME</span></p>
                 </div>

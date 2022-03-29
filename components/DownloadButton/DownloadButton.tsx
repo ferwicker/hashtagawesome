@@ -31,6 +31,10 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     // add logo to image
 
     React.useEffect(() => {
+        setIsMobileDevice(isMobile);
+    }, [isMobile]);
+
+    React.useEffect(() => {
         if (!imageHidden && !isMobileDevice) {
             Download();
         } else if (!imageHidden && isMobileDevice) {
@@ -85,7 +89,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
             className={css.button}
             onClick={handleClick}
         >
-            <FontAwesomeIcon icon={isMobile ? "share" : "download"} color="#fff" size="2x"  />
+            <FontAwesomeIcon icon={isMobileDevice ? "share" : "download"} color="#fff" size="2x"  />
         </button>
         <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
             <div className={css.promptValues}>

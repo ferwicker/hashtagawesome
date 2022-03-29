@@ -105,18 +105,20 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         >
             <FontAwesomeIcon icon={"share"} color="#fff" size="2x"  />
         </button>
-        <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
-            <div className={css.smallLogoContainer}>
-                <p className={css.logoReplacement}><span className={css.solid}>HASHTAG</span><span className={css.outline}>AWESOME</span></p>
+        <div className={css.hideThis}>
+            <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
+                <div className={css.smallLogoContainer}>
+                    <p className={css.logoReplacement}><span className={css.solid}>HASHTAG</span><span className={css.outline}>AWESOME</span></p>
+                </div>
+                <div className={css.promptValues}>
+                    {promptValues && promptValues.length > 0  && promptValues.map((el, i) => {
+                        return (
+                            <PromptValue key={i} title={el.title} value={el.value}  />
+                        )
+                    })}
+                </div>
+                <p className={css.shareP}>Share your creations with #hashtagawesomeprompts</p>
             </div>
-            <div className={css.promptValues}>
-                {promptValues && promptValues.length > 0  && promptValues.map((el, i) => {
-                    return (
-                        <PromptValue key={i} title={el.title} value={el.value}  />
-                    )
-                })}
-            </div>
-            <p className={css.shareP}>Share your creations with #hashtagawesomeprompts</p>
         </div>
         </>
     )

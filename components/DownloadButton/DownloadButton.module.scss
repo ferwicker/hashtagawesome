@@ -58,3 +58,8 @@
         font-family: $font-outline;
     }
 }
+
+.hideThis {
+    opacity: 0;
+    z-index: -1;
+}

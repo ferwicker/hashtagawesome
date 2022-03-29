@@ -60,11 +60,9 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     const Share = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
         !imageHidden && html2canvas(div).then(canvas => {
-            // const file = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
             let file;
             canvas.toBlob(function (blob) {
-                // console.log(blob);
-                file = URL.createObjectURL(blob);
+                file = URL.createObjectURL(blob) !;
             });
             if (navigator.share) {
                 navigator

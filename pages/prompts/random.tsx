@@ -80,7 +80,7 @@ const RandomPrompt: NextPage = () => {
             title="Hashtag Awesome Nails | Random Prompt"
             description="Get a random nail prompt to inspire your creativity"
         />
-        <DownloadButton />
+        <DownloadButton promptValues={promptValues} />
         <div className={css.menuButtonContainer}>
             <Link href="/prompts">
                 <a className={[css.halfWidth, css.buttonLeft].join(' ')}>

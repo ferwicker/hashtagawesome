@@ -28,20 +28,17 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     const [imageHidden, setImageHidden] = React.useState(true);
     const [isMobileDevice, setIsMobileDevice] = React.useState(isMobile);
 
-    // detect device
-
-    // generate image to be downloaded
-
-    // function for desktop
+    // add logo to image
 
     React.useEffect(() => {
-        !imageHidden && Download();
+        if (!imageHidden && !isMobileDevice) {
+            Download();
+        } else if (!imageHidden && isMobileDevice) {
+            // function for mobile here
+        } else return;
     }, [imageHidden])
 
-    const handleDownload = () => {
-        setImageHidden(false);
-    }
-
+    // function for desktop
     const Download = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
         !imageHidden && html2canvas(div).then(canvas => {
@@ -56,10 +53,36 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     }
 
     //function for mobile
+    const Share = () => {
+        let div:HTMLElement = document.getElementById('screenshot') !;
+        !imageHidden && html2canvas(div).then(canvas => {
+            const link = document.createElement('a');
+            link.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
+            link.download = 'Download.jpg';
+            document.body.appendChild(link);
+
+            if (navigator.share) {
+                navigator
+                  .share({
+                    title: "hashtagawesomeprompts.jpg",
+                    url: link.href,
+                  })
+                  .then(() => {
+                    alert('Successfully shared');
+                  })
+                  .catch(error => {
+                    alert('Something went wrong sharing the blog');
+                  });
+              }
+
+            document.body.removeChild(link)
+            setImageHidden(true);
+        })
+    }
 
     // click handler
     const handleClick = () => {
-       console.log(isMobileDevice);
+       setImageHidden(false);
     }
 
     return (

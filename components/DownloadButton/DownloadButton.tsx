@@ -30,12 +30,15 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     promptValues,
 }) => {
     const [isMobileDevice, setIsMobileDevice] = React.useState(isMobile);
-
-    // add logo to image
+    let file:File | undefined;
 
     React.useEffect(() => {
         setIsMobileDevice(isMobile);
     }, [isMobile]);
+
+    React.useEffect(() => {
+        isMobileDevice && (file = getImageMobile());
+    }, [promptValues]);
 
     // function for desktop
     const Download = () => {
@@ -80,12 +83,41 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         })
     }
 
+    const getImageMobile = () => {
+        let div:HTMLElement = document.getElementById('screenshot') !;
+        let tempFile;
+
+        html2canvas(div).then(canvas => {
+            canvas.toBlob(function(blob){
+                const myBlob:BlobPart = new Blob([blob as BlobPart]);
+                tempFile = new File([myBlob], "hashtagawesomeprompts.png", {type:"image/png"});
+            })
+        })
+
+        return tempFile;
+    }
+
     // click handler
     const handleClick = () => {
         if (!isMobileDevice) {
             Download();
         } else if (isMobileDevice) {
-            Share();
+            if (file && navigator.share) {
+                navigator
+                  .share({
+                    files: [file],
+                  })
+                  /* .then(() => {
+                    alert('Successfully shared');
+                  }) */
+                  .catch(error => {
+                    alert(error);
+                  });
+              } else if (!navigator.share) {
+                  alert('no sharing available')
+              } else {
+                  alert('no file')
+              }
         }
     }
 

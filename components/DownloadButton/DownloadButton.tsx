@@ -79,7 +79,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
                         alert('Successfully shared');
                       })
                       .catch(error => {
-                        alert('Something went wrong sharing the blob');
+                        alert(error);
                       });
                   } else if (!navigator.share) {
                       alert('no sharing available')

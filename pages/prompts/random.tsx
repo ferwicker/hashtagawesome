@@ -11,6 +11,7 @@ import { optionsObject } from '../../configs/customOptions';
 
 import Image from 'next/image'
 import smallLogo from '../../public/images/hor-logo.png';
+import smallerLogo from '../../public/images/small-logo-21.png';
 import PromptValue from '../../components/PromptValue';
 import MenuButton from '../../components/MenuButton';
 import NavMenu from '../../components/NavMenu';
@@ -34,6 +35,7 @@ const RandomPrompt: NextPage = () => {
 
     const [promptValues, setPromptValues] = React.useState<Prompt[]>([]);
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+    const [imageHidden, setImageHidden] = React.useState(true);
 
     const toggleMenuOpen = () => {
         let tempOpen = isMenuOpen;
@@ -73,16 +75,25 @@ const RandomPrompt: NextPage = () => {
         setPromptValues(tempArr);
     }
 
-    const handleScreenshot = () => {
+    const Download = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
-        html2canvas(div).then(canvas => {
+        !imageHidden && html2canvas(div).then(canvas => {
             const link = document.createElement('a');
             link.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
             link.download = 'Download.jpg';
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            setImageHidden(true);
         })
+    }
+
+    React.useEffect(() => {
+        !imageHidden && Download();
+    }, [imageHidden])
+
+    const handleScreenshot = () => {
+        setImageHidden(false);
     }
 
     return (
@@ -111,7 +122,7 @@ const RandomPrompt: NextPage = () => {
                 height="98px"
                 className={css.logo} />
         </div>
-        <div id={'screenshot'} className={css.promptValues}>
+        <div className={css.promptValues}>
             {promptValues.length > 0  && promptValues.map((el, i) => {
                 return (
                     <PromptValue key={i} title={el.title} value={el.value}  />
@@ -121,6 +132,16 @@ const RandomPrompt: NextPage = () => {
         <button className={css.shuffleButton} onClick={() => { getPrompt(optionsObject) }} >
             <FontAwesomeIcon icon="shuffle" color="#ec1c24" size="3x" />
         </button>
+        <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
+            <div className={css.promptValues}>
+                {promptValues.length > 0  && promptValues.map((el, i) => {
+                    return (
+                        <PromptValue key={i} title={el.title} value={el.value}  />
+                    )
+                })}
+            </div>
+            <p className={css.shareP}>Share your creations with #hashtagawesomeprompts</p>
+        </div>
         </>
     )
 }

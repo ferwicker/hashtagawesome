@@ -43,7 +43,7 @@ const About: NextPage = () => {
                 creative outlet and my passion project.
             </p>
             <p>
-                Combining coding and nail art, I have created a Hashtag Awesome Prompts, to help spark your and you clients creativity!
+                Combining coding and nail art, I have created a Hashtag Awesome Prompts, to help spark you and your clients creativity!
             </p>
             <p>
                 I am also always practicing and improving my work and I am open to brand collaborations.

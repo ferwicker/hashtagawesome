@@ -62,7 +62,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         !imageHidden && html2canvas(div).then(canvas => {
             let file;
             canvas.toBlob(function (blob) {
-                file = URL.createObjectURL(blob) || null;
+                blob ? file = URL.createObjectURL(blob) : file = null;
             });
             if (file && navigator.share) {
                 navigator
@@ -76,7 +76,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
                   .catch(error => {
                     alert('Something went wrong sharing the blob');
                   });
-              }
+              } else {alert('no file')}
             setImageHidden(true);
         })
     }

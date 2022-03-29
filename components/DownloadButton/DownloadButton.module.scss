@@ -1,9 +1,30 @@
+@import '../../styles/global.scss';
+
 .button {
     position: fixed;
     bottom: 84px;
     right: 24px;
-    padding: 8px;
-    background: none;
+    padding: 16px;
+    background: $colour-primary;
     border: none;
+    border-radius: 50%;
     cursor: pointer;
+}
+
+.canvasDiv {
+    position: absolute;
+    width: 100%;
+    background: $colour-lightPink url('../../public/images/bg-14.png') repeat;
+    padding: 24px;
+    // z-index: -1;
+
+    .shareP {
+        color: $colour-primary;
+        text-align: center;
+        margin-bottom: 0;
+    }
+}
+
+.hide {
+    display: none;
 }

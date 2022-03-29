@@ -61,22 +61,49 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         let div:HTMLElement = document.getElementById('screenshot') !;
         !imageHidden && html2canvas(div).then(canvas => {
             let file;
-            canvas.toBlob(function (blob) {
-                blob ? file = URL.createObjectURL(blob) : file = null;
-            });
-            if (file && navigator.share) {
-                navigator
-                  .share({
-                    title: "hashtagawesomeprompts.png",
-                    files: file,
-                  })
-                  .then(() => {
-                    alert('Successfully shared');
-                  })
-                  .catch(error => {
-                    alert('Something went wrong sharing the blob');
-                  });
-              } else {alert('no file')}
+            const myBlob:BlobPart = new Blob([canvas as unknown as BlobPart]);
+            file = new File([myBlob], "prompt");
+                console.log(file)
+                if (navigator.share) {
+                    navigator
+                      .share({
+                        title: "hashtagawesomeprompts.png",
+                        files: [file],
+                      })
+                      .then(() => {
+                        alert('Successfully shared');
+                      })
+                      .catch(error => {
+                        alert('Something went wrong sharing the blob');
+                      });
+                  } else if (!navigator.share) {
+                      alert('no sharing available')
+                  } else {
+                      alert('no file')
+                  }
+            /* canvas.toBlob(function (blob) {
+                const myBlob:BlobPart = blob;
+                file = new File([blob], "prompt");
+                console.log(file)
+                if (navigator.share) {
+                    navigator
+                      .share({
+                        title: "hashtagawesomeprompts.png",
+                        files: [file],
+                      })
+                      .then(() => {
+                        alert('Successfully shared');
+                      })
+                      .catch(error => {
+                        alert('Something went wrong sharing the blob');
+                      });
+                  } else if (!navigator.share) {
+                      alert('no sharing available')
+                  } else {
+                      alert('no file')
+                  }
+            }); */
+            
             setImageHidden(true);
         })
     }

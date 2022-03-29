@@ -30,14 +30,14 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     promptValues,
 }) => {
     const [isMobileDevice, setIsMobileDevice] = React.useState(isMobile);
-    let file:File | undefined;
+    const [file, setFile] = React.useState<File | undefined>();
 
     React.useEffect(() => {
         setIsMobileDevice(isMobile);
     }, [isMobile]);
 
     React.useEffect(() => {
-        isMobileDevice && (file = getImageMobile());
+        getImageMobile();
     }, [promptValues]);
 
     // function for desktop
@@ -57,16 +57,15 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     const Share = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
         html2canvas(div).then(canvas => {
-            let file;
+            let fileMob;
             canvas.toBlob(function(blob){
                 const myBlob:BlobPart = new Blob([blob as BlobPart]);
             
-                file = new File([myBlob], "hashtagawesomeprompts.png", {type:"image/png"});
-                console.log(file)
+                fileMob = new File([myBlob], "hashtagawesomeprompts.png", {type:"image/png"});
                 if (navigator.share) {
                     navigator
                       .share({
-                        files: [file],
+                        files: [fileMob],
                       })
                       .then(() => {
                         alert('Successfully shared');
@@ -91,10 +90,9 @@ const DownloadButton: React.FunctionComponent<Props> = ({
             canvas.toBlob(function(blob){
                 const myBlob:BlobPart = new Blob([blob as BlobPart]);
                 tempFile = new File([myBlob], "hashtagawesomeprompts.png", {type:"image/png"});
+                setFile(tempFile);
             })
         })
-
-        return tempFile;
     }
 
     // click handler

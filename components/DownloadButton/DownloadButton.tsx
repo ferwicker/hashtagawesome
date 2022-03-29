@@ -56,16 +56,12 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     const Share = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
         !imageHidden && html2canvas(div).then(canvas => {
-            const link = document.createElement('a');
-            link.href = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
-            link.download = 'Download.jpg';
-            document.body.appendChild(link);
-
+            const file = canvas.toDataURL("image/jpeg").replace("image/jpeg", "image/octet-stream");
             if (navigator.share) {
                 navigator
                   .share({
                     title: "hashtagawesomeprompts.jpg",
-                    url: link.href,
+                    url: file,
                   })
                   .then(() => {
                     alert('Successfully shared');
@@ -74,8 +70,6 @@ const DownloadButton: React.FunctionComponent<Props> = ({
                     alert('Something went wrong sharing the blog');
                   });
               }
-
-            document.body.removeChild(link)
             setImageHidden(true);
         })
     }

@@ -105,16 +105,16 @@ const DownloadButton: React.FunctionComponent<Props> = ({
                   .share({
                     files: [file],
                   })
-                  /* .then(() => {
+                  .then(() => {
                     alert('Successfully shared');
-                  }) */
+                  })
                   .catch(error => {
-                    alert(error);
+                    console.log(error);
                   });
               } else if (!navigator.share) {
-                  alert('no sharing available')
+                  alert('Sorry! This device has no sharing available.')
               } else {
-                  alert('no file')
+                  alert('no file found')
               }
         }
     }

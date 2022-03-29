@@ -2,7 +2,6 @@
 import * as React from 'react';
 import type { NextPage } from 'next'
 import Link from 'next/link';
-import html2canvas from 'html2canvas';
 
 import HeadMeta from '../../components/HeadMeta'
 import css from './index.module.scss'
@@ -11,7 +10,6 @@ import { optionsObject } from '../../configs/customOptions';
 
 import Image from 'next/image'
 import smallLogo from '../../public/images/hor-logo.png';
-import smallerLogo from '../../public/images/small-logo-21.png';
 import PromptValue from '../../components/PromptValue';
 import MenuButton from '../../components/MenuButton';
 import NavMenu from '../../components/NavMenu';

@@ -29,3 +29,32 @@
 .hide {
     display: none;
 }
+
+.logo {
+    width: 100% !important;
+    height: 100% !important;
+    min-width: none;
+    min-height: none;
+    margin: 0;
+  }
+
+.smallLogoContainer {
+    width: 100%;
+    max-width: 300px;
+    margin: auto;
+}
+
+.logoReplacement {
+    color: $colour-primary;
+    font-size: 32px;
+    margin: auto;
+    margin-bottom: 24px;
+
+    .solid {
+        font-family: $font-solid;
+    }
+
+    .outline {
+        font-family: $font-outline;
+    }
+}

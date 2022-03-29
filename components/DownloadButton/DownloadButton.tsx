@@ -1,9 +1,13 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import html2canvas from 'html2canvas';
 import { isMobile } from 'react-device-detect';
+import Image from 'next/image';
 
 import css from './DownloadButton.module.scss';
+
+import smallerLogo from '../../public/images/small-logo-21.png';
 
 import PromptValue from '../PromptValue';
 
@@ -36,7 +40,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
 
     React.useEffect(() => {
         if (!imageHidden && !isMobileDevice) {
-            Share();
+            Download();
         } else if (!imageHidden && isMobileDevice) {
             Share();
         } else return;
@@ -59,7 +63,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     //function for mobile
     const Share = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
-        !imageHidden && html2canvas(div).then(canvas => {
+        !imageHidden && html2canvas(div, {allowTaint : true}).then(canvas => {
             let file;
             canvas.toBlob(function(blob){
                 const myBlob:BlobPart = new Blob([blob as BlobPart]);
@@ -102,6 +106,9 @@ const DownloadButton: React.FunctionComponent<Props> = ({
             <FontAwesomeIcon icon={isMobileDevice ? "share" : "download"} color="#fff" size="2x"  />
         </button>
         <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
+            <div className={css.smallLogoContainer}>
+                <p className={css.logoReplacement}><span className={css.solid}>HASHTAG</span><span className={css.outline}>AWESOME</span></p>
+            </div>
             <div className={css.promptValues}>
                 {promptValues && promptValues.length > 0  && promptValues.map((el, i) => {
                     return (

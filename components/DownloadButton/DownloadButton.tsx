@@ -63,7 +63,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
     //function for mobile
     const Share = () => {
         let div:HTMLElement = document.getElementById('screenshot') !;
-        !imageHidden && html2canvas(div, {allowTaint : true}).then(canvas => {
+        !imageHidden && html2canvas(div).then(canvas => {
             let file;
             canvas.toBlob(function(blob){
                 const myBlob:BlobPart = new Blob([blob as BlobPart]);
@@ -103,7 +103,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
             className={css.button}
             onClick={handleClick}
         >
-            <FontAwesomeIcon icon={isMobileDevice ? "share" : "download"} color="#fff" size="2x"  />
+            <FontAwesomeIcon icon={"share"} color="#fff" size="2x"  />
         </button>
         <div id={'screenshot'} className={[css.canvasDiv, imageHidden ? css.hide : null].join(' ')}>
             <div className={css.smallLogoContainer}>

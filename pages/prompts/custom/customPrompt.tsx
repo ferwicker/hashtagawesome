@@ -12,6 +12,7 @@ import MenuButton from '../../../components/MenuButton';
 import HeadMeta from '../../../components/HeadMeta';
 import NavMenu from '../../../components/NavMenu'
 // import Button from '../../../components/Button';
+import DownloadButton from '../../../components/DownloadButton'
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faShuffle } from '@fortawesome/free-solid-svg-icons'
@@ -132,6 +133,7 @@ const CustomPromptResult: NextPage = () => {
                 title="Hashtag Awesome Nails | Random Prompt"
                 description="Get a random nail prompt to inspire your creativity"
             />
+            <DownloadButton promptValues={promptValues} />
             <div className={css.menuButtonContainer}>
                 <Link href="/prompts/custom">
                     <a className={[css.halfWidth, css.buttonLeft].join(' ')}>

@@ -62,9 +62,9 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         !imageHidden && html2canvas(div).then(canvas => {
             let file;
             canvas.toBlob(function (blob) {
-                file = URL.createObjectURL(blob) !;
+                file = URL.createObjectURL(blob) || null;
             });
-            if (navigator.share) {
+            if (file && navigator.share) {
                 navigator
                   .share({
                     title: "hashtagawesomeprompts.png",

@@ -36,7 +36,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
 
     React.useEffect(() => {
         if (!imageHidden && !isMobileDevice) {
-            Download();
+            Share();
         } else if (!imageHidden && isMobileDevice) {
             Share();
         } else return;
@@ -61,33 +61,14 @@ const DownloadButton: React.FunctionComponent<Props> = ({
         let div:HTMLElement = document.getElementById('screenshot') !;
         !imageHidden && html2canvas(div).then(canvas => {
             let file;
-            const myBlob:BlobPart = new Blob([canvas as unknown as BlobPart]);
-            file = new File([myBlob], "hashtagawesomeprompts.png", {type:"image/png"});
-                // console.log(file)
-                if (navigator.share) {
-                    navigator
-                      .share({
-                        files: [file],
-                      })
-                      .then(() => {
-                        alert('Successfully shared');
-                      })
-                      .catch(error => {
-                        alert('Something went wrong sharing the blob');
-                      });
-                  } else if (!navigator.share) {
-                      alert('no sharing available')
-                  } else {
-                      alert('no file')
-                  }
-            /* canvas.toBlob(function (blob) {
-                const myBlob:BlobPart = blob;
-                file = new File([blob], "prompt");
+            canvas.toBlob(function(blob){
+                const myBlob:BlobPart = new Blob([blob as BlobPart]);
+            
+                file = new File([myBlob], "hashtagawesomeprompts.png", {type:"image/png"});
                 console.log(file)
                 if (navigator.share) {
                     navigator
                       .share({
-                        title: "hashtagawesomeprompts.png",
                         files: [file],
                       })
                       .then(() => {
@@ -101,7 +82,7 @@ const DownloadButton: React.FunctionComponent<Props> = ({
                   } else {
                       alert('no file')
                   }
-            }); */
+            })
             
             setImageHidden(true);
         })
